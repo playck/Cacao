@@ -1,6 +1,6 @@
 import { Theme } from "@emotion/react";
 
-const Theme: Theme = {
+const theme: Theme = {
   colors: {
     primary: "",
     gray: {
@@ -18,3 +18,5 @@ const Theme: Theme = {
     white: "#fff",
   },
 };
+
+export default theme;
