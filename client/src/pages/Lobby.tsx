@@ -1,7 +1,12 @@
 import React from "react";
+import TopNavigation from "../components/TopNavigation";
 
 const Lobby = () => {
-  return <div>로비</div>;
+  return (
+    <div>
+      <TopNavigation title="Lobby" />
+    </div>
+  );
 };
 
 export default Lobby;
