@@ -62,7 +62,7 @@ const Button = styled.button<{ backgroundColor: string }>`
   font-size: 16px;
   font-weight: bold;
   &:active {
-    opacity: 0.7l;
+    opacity: 0.7;
   }
 `;
 
