@@ -6,7 +6,7 @@ import { BsPlusSquare } from "react-icons/bs";
 import { useTheme } from "@emotion/react";
 
 const Base = styled.div<{ borderColor: string; backgroundColor: string }>`
-  width: 100%100vh;
+  width: 100%;
   height: 48px;
   position: fixed;
   left: 0;
