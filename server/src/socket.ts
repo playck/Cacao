@@ -1,12 +1,10 @@
 const SocketIO = require("socket.io");
 
 import { Application, NextFunction, RequestHandler } from "express";
-import session from "express-session";
-import { Session } from "inspector";
 import { Server } from "net";
 import { Socket } from "socket.io";
 
-const socket = (Server, Application, RequestHandler) => {
+const socket = (server: Server, app: Application, session: RequestHandler) => {
   const io = SocketIO(server, {
     path: "/socket.io",
     cors: {
@@ -18,22 +16,24 @@ const socket = (Server, Application, RequestHandler) => {
 
   const chat = io.of("/chat");
 
-  io.use((Socket, NextFunction) => {
+  io.use((socket: Socket, next: NextFunction) => {
     const req = socket.request;
-
+    // @ts-ignore
     const res = socket.request.res || {};
-
+    // @ts-ignore
     session(req, res, next);
   });
 
-  chat.on("connent", async (req, res) => {
+  chat.on("connection", async (socket: Socket) => {
+    console.log("Connected to Chat", socket.id);
+
     socket.on("join", (roomId) => {
       socket.join(roomId);
     });
-  });
 
-  socket.on("disconnent", (date) => {
-    console.log("Disconnected to Chat");
+    socket.on("disconnect", (data) => {
+      console.log("Disconnected to Chat");
+    });
   });
 };
 

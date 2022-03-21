@@ -1,12 +1,13 @@
 import { Router } from "express";
+
 import Chat from "../schemas/chat";
-import Room from "../schemas/room";
 import User from "../schemas/user";
+import Room from "../schemas/room";
 
 const router = Router();
 
-// 채팅 목록
-router.get("./:roomId", async (req, res) => {
+/* 채팅 목록 */
+router.get("/:roomId", async (req, res) => {
   try {
     const chat = await Chat.findAll({
       where: {
@@ -19,11 +20,11 @@ router.get("./:roomId", async (req, res) => {
   } catch (e) {}
 });
 
-// 채팅 전송
-
+/* 채팅 전송 */
 router.post("/:roomId", async (req, res) => {
   try {
     const chat = await Chat.create({
+      // @ts-ignore
       senderId: req.session.userId,
       content: req.body.content,
       roomId: req.params.roomId,

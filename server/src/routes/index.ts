@@ -1,8 +1,8 @@
 import { Router } from "express";
 
 import chat from "./chat";
-import room from "./room";
 import user from "./user";
+import room from "./room";
 
 const router = Router();
 
