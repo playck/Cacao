@@ -2,7 +2,7 @@ import React from "react";
 import styeld from "@emotion/styled/macro";
 
 export interface MessageType {
-  sender: string;
+  senderId: string;
   content: string;
   timestamp: string;
 }
