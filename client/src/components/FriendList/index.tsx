@@ -7,7 +7,7 @@ const Base = styled.ul`
   padding: 0 0 64px 0;
 `;
 
-const FriendList = ({ children }) => {
+const FriendList: React.FC = ({ children }) => {
   return <Base>{children}</Base>;
 };
 
