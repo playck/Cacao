@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
-import styled from "@emotion/styled/macro";
+
+import styled from "@emotion/styled";
+import { useTheme } from "@emotion/react";
 
 import { AiOutlineArrowUp } from "react-icons/ai";
 import { BsPlusSquare } from "react-icons/bs";
-import { useTheme } from "@emotion/react";
 
 const Base = styled.div<{ borderColor: string; backgroundColor: string }>`
   width: 100%;
@@ -15,7 +16,7 @@ const Base = styled.div<{ borderColor: string; backgroundColor: string }>`
   box-sizing: border-box;
   border-top: 1px solid ${({ borderColor }) => borderColor};
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background-color: ${({ backgroundColor }) => backgroundColor};
   padding: 4px;
@@ -53,11 +54,9 @@ const SendButtonWrapper = styled.div`
   box-sizing: border-box;
 `;
 
-const SendButton = styled.button<{
-  backgroundColor: string;
-}>`
-  background-color: ${({ backgroundColor }) => backgroundColor};
+const SendButton = styled.button<{ backgroundColor: string }>`
   border: none;
+  background-color: ${({ backgroundColor }) => backgroundColor};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,8 +74,8 @@ interface Props {
 }
 
 const InputChat: React.FC<Props> = ({ onClick }) => {
-  const theme = useTheme();
   const inputRef = useRef<HTMLInputElement>(null);
+  const theme = useTheme();
   const [content, setContent] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,6 +84,7 @@ const InputChat: React.FC<Props> = ({ onClick }) => {
 
   const handleClick = () => {
     onClick(content);
+
     setContent("");
 
     if (inputRef.current) {
@@ -105,9 +105,9 @@ const InputChat: React.FC<Props> = ({ onClick }) => {
       <InputWrapper>
         <Input
           ref={inputRef}
-          onChange={handleChange}
-          borderColor={theme.colros.gray[200]}
+          borderColor={theme.colors.gray[200]}
           backgroundColor={theme.colors.gray[100]}
+          onChange={handleChange}
         />
       </InputWrapper>
       <SendButtonWrapper>
