@@ -1,6 +1,5 @@
 import { useTheme } from "@emotion/react";
 import styled from "@emotion/styled";
-import { timeStamp } from "console";
 import React from "react";
 import { MessageType } from "./MessageList";
 
@@ -29,12 +28,13 @@ interface Props extends MessageType {}
 
 const SentMessage: React.FC<Props> = ({ content, timestamp }) => {
   const theme = useTheme();
+
   return (
     <Base>
       <SpeechBubble backgroundColor={theme.colors.primary}>
         {content}
       </SpeechBubble>
-      <SentAt>{timestamp}</SentAt>
+      <SentAt>{timestamp.slice(11, 16)}</SentAt>
     </Base>
   );
 };

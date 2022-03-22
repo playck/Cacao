@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled/macro";
 import { Global, css } from "@emotion/react";
 import MessageList from "../components/ChatRoomDetail/MessageList";
-import TopNavigation from "../components/TopNavigation";
+import TopNavigation from "../components/ChatRoomDetail/TopNavigation";
 import { useParams } from "react-router-dom";
 import { useMutation, useQuery } from "react-query";
 import { fetchMyProfile } from "../api/userApi";

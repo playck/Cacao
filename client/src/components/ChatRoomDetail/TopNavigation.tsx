@@ -3,6 +3,7 @@ import styeld from "@emotion/styled/macro";
 import { useNavigate } from "react-router-dom";
 import { BiSearchAlt2, BiArrowBack } from "react-icons/bi";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useTheme } from "@emotion/react";
 
 const Base = styeld.header`
     display: flex;
@@ -14,6 +15,8 @@ const Base = styeld.header`
     right: 0;
     height: 36px;
     box-sizing: border-box;
+    background-color: #abc1d1;
+    opacity: 0.9;
 `;
 
 const Title = styeld.h1`
@@ -35,6 +38,7 @@ interface Props {
 
 const TopNavigation: React.FC<Props> = ({ title }) => {
   const navigate = useNavigate();
+  const theme = useTheme();
 
   return (
     <Base>

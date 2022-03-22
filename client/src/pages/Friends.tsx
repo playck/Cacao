@@ -68,7 +68,7 @@ const Friends: React.FC = () => {
         },
         {
           onSuccess: (data) => {
-            navigate(`/room/${data.data.id}`);
+            navigate(`/rooms/${data.data.id}`);
           },
         }
       );

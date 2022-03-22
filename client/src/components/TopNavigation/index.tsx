@@ -12,9 +12,10 @@ const Base = styled.header`
   align-items: center;
   position: fixed;
   top: 0;
-  left: 12px;
+  left: 0;
   right: 12px;
-  height: 36px;
+  width: 100%;
+  height: 50px;
   box-sizing: border-box;
   background-color: #fff;
 `;
@@ -29,7 +30,7 @@ const ActionItemContainer = styled.div``;
 
 const ActionItem = styled.span`
   font-size: 20px;
-  padding: 0 20px;
+  padding: 0 15px;
 `;
 
 interface Props {

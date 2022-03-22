@@ -3,14 +3,14 @@ import styled from "@emotion/styled/macro";
 import { MessageType } from "./MessageList";
 import { useTheme } from "@emotion/react";
 
-const Base = styled.div`
+const Base = styled.li`
   display: flex;
   width: 100%;
 `;
 
 const Image = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   margin-right: 10px;
 `;
@@ -18,7 +18,7 @@ const Image = styled.img`
 const Content = styled.div``;
 
 const Username = styled.span`
-  opacity: 0.8;
+  opacity: 1;
   font-size: 14px;
 `;
 
@@ -38,7 +38,7 @@ const SpeechBubble = styled.span<{ backgroundColor: string }>`
 
 const ReceivedAt = styled.span`
   font-size: 14px;
-  opacity: 0.8;
+  opacity: 1;
 `;
 
 interface Props extends MessageType {
@@ -62,7 +62,7 @@ const ReceiveMessage: React.FC<Props> = ({
           <SpeechBubble backgroundColor={theme.colors.white}>
             {content}
           </SpeechBubble>
-          <ReceivedAt>{timestamp}</ReceivedAt>
+          <ReceivedAt>{timestamp.slice(11, 16)}</ReceivedAt>
         </Info>
       </Content>
     </Base>

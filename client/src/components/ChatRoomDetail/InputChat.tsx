@@ -82,7 +82,7 @@ const InputChat: React.FC<Props> = ({ onClick }) => {
     setContent(e.target.value);
   };
 
-  const handleClick = () => {
+  const sentMessage = () => {
     onClick(content);
 
     setContent("");
@@ -91,6 +91,12 @@ const InputChat: React.FC<Props> = ({ onClick }) => {
       inputRef.current.value = "";
     }
   };
+
+  function enterKey(e: any) {
+    if (e.keyCode == 13) {
+      sentMessage();
+    }
+  }
 
   return (
     <Base
@@ -108,12 +114,13 @@ const InputChat: React.FC<Props> = ({ onClick }) => {
           borderColor={theme.colors.gray[200]}
           backgroundColor={theme.colors.gray[100]}
           onChange={handleChange}
+          onKeyUp={enterKey}
         />
       </InputWrapper>
       <SendButtonWrapper>
         <SendButton
           backgroundColor={theme.colors.primary}
-          onClick={handleClick}
+          onClick={sentMessage}
         >
           <AiOutlineArrowUp />
         </SendButton>
