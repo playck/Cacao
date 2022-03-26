@@ -55,24 +55,27 @@ const BottomNavigation: React.FC = () => {
     >
       <NavList>
         <NavItem>
-          <Link to="/friends" />
-          <NavButton>
-            <BiUser />
-          </NavButton>
+          <Link to="/friends">
+            <NavButton>
+              <BiUser />
+            </NavButton>
+          </Link>
         </NavItem>
 
         <NavItem>
-          <Link to="/rooms" />
-          <NavButton>
-            <BsChatDots />
-          </NavButton>
+          <Link to="/rooms">
+            <NavButton>
+              <BsChatDots />
+            </NavButton>
+          </Link>
         </NavItem>
 
         <NavItem>
-          <Link to="/more" />
-          <NavButton>
-            <AiOutlineEllipsis />
-          </NavButton>
+          <Link to="/more">
+            <NavButton>
+              <AiOutlineEllipsis />
+            </NavButton>
+          </Link>
         </NavItem>
       </NavList>
     </Base>

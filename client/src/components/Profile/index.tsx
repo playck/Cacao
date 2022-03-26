@@ -7,7 +7,7 @@ const Base = styled.div<{ color: string }>`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 48px 0 24px 0;
+  padding: 50px 0 24px 0;
   width: 100%;
   border-bottom: 1px solid ${({ color }) => color};
 `;

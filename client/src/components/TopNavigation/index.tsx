@@ -18,6 +18,7 @@ const Base = styled.header`
   height: 50px;
   box-sizing: border-box;
   background-color: #fff;
+  padding-left: 15px;
 `;
 
 const Title = styled.h1`
