@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled/macro";
 import { Global, css } from "@emotion/react";
+import { io } from "socket.io-client";
 import MessageList from "../components/ChatRoomDetail/MessageList";
 import TopNavigation from "../components/ChatRoomDetail/TopNavigation";
 import { useParams } from "react-router-dom";
@@ -13,6 +14,7 @@ import { IChat, IProfile, IRoom } from "../types";
 import SentMessage from "../components/ChatRoomDetail/SentMessage";
 import ReceiveMessage from "../components/ChatRoomDetail/ReceiveMessage";
 import InputChat from "../components/ChatRoomDetail/InputChat";
+import { API_HOST } from "../config";
 
 const Base = styled.div`
   position: relative;
@@ -53,6 +55,20 @@ const RoomDetail: React.FC = () => {
     fetchChatMassageList(roomId as string)
   );
 
+  const [messages, setMessages] = useState<Array<IChat>>(
+    chatListData?.data || []
+  );
+
+  useEffect(() => {
+    const socket = io(`${API_HOST}/chat`, { path: "/socket.io" });
+
+    socket.emit("join", roomId);
+
+    socket.on("chat", (newMessage: IChat) => {
+      setMessages((prev) => [...prev, newMessage]);
+    });
+  }, []);
+
   const mutation = useMutation("sendChatMessage", (content: string) =>
     sendChatMessage(roomId as string, content)
   );
@@ -77,7 +93,7 @@ const RoomDetail: React.FC = () => {
       )}
       <Container>
         <MessageList>
-          {chatListData?.data.map((message) =>
+          {messages.map((message) =>
             message.senderId === profileData?.data.userId ? (
               <SentMessage
                 key={message.id}
