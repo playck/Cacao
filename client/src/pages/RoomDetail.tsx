@@ -18,6 +18,7 @@ import { API_HOST } from "../config";
 
 const Base = styled.div`
   position: relative;
+  list-style: none;
 `;
 
 const Container = styled.div`
@@ -36,7 +37,7 @@ const globalStyle = css`
 
 const RoomDetail: React.FC = () => {
   const { roomId } = useParams<string>();
-  const inputRef = useRef<HTMLInputElement>(null);
+  const scroolBottomRef = useRef<HTMLLIElement>(null);
 
   const { data: profileData } = useQuery<AxiosResponse<IProfile>, AxiosError>(
     "fetchMyProfile",
@@ -80,8 +81,14 @@ const RoomDetail: React.FC = () => {
   };
 
   useEffect(() => {
-    if (inputRef.current !== null) {
-      inputRef.current.scrollIntoView({ block: "start" });
+    if (scroolBottomRef.current !== null) {
+      scroolBottomRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
+  useEffect(() => {
+    if (scroolBottomRef.current !== null) {
+      scroolBottomRef.current.scrollIntoView({ block: "start" });
     }
   }, []);
 
@@ -113,7 +120,7 @@ const RoomDetail: React.FC = () => {
           )}
         </MessageList>
       </Container>
-      <div ref={inputRef} />
+      <li ref={scroolBottomRef} />
       <InputChat onClick={handleSend} />
     </Base>
   );
