@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "@emotion/styled/macro";
 import { Global, css } from "@emotion/react";
 import MessageList from "../components/ChatRoomDetail/MessageList";
@@ -34,6 +34,7 @@ const globalStyle = css`
 
 const RoomDetail: React.FC = () => {
   const { roomId } = useParams<string>();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const { data: profileData } = useQuery<AxiosResponse<IProfile>, AxiosError>(
     "fetchMyProfile",
@@ -61,6 +62,12 @@ const RoomDetail: React.FC = () => {
       mutation.mutate(content);
     }
   };
+
+  useEffect(() => {
+    if (inputRef.current !== null) {
+      inputRef.current.scrollIntoView({ block: "start" });
+    }
+  }, []);
 
   return (
     <Base>
@@ -90,6 +97,7 @@ const RoomDetail: React.FC = () => {
           )}
         </MessageList>
       </Container>
+      <div ref={inputRef} />
       <InputChat onClick={handleSend} />
     </Base>
   );
